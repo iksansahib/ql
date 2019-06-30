@@ -1,0 +1,5 @@
+SELECT date(date) as day, 
+SUM(IF(score>0, score, 0)) as num_pos_score, 
+SUM(if(score<0,score,0)) as num_neg_score FROM `assessments`
+WHERE date BETWEEN date('2011-03-01') and date('2011-04-30')
+group by date(date)

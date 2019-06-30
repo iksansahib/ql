@@ -1,0 +1,70 @@
+1. What’s the difference between the include() and require()functions?
+    include will only rise warning if not found, require will raise error and breaks the script
+
+2. How can we get the IP address of the client?
+    using $_SERVER like $_SERVER['HTTP_CLIENT_IP'], $_SERVER['HTTP_X_FORWARDED_FOR'],$_SERVER['REMOTE_ADDR']
+
+3. What’s the difference between unset() and unlink()
+    unlink delete file, unset will only empty the content
+
+4. What are the main error types in PHP and how do they differ?
+    Parse Error (Syntax Error) : error on writing script, typo, will break the script
+    Fatal Error : doing something wrong, like call undefined function, it can be happend since PHP is interpreter language, will break the script
+    Warning Error : undefined index on array, will not break the script
+    Notice Error : will not break the script
+
+5. What is the difference between GET and POST?
+    GET: for get data, will send param using query string or path
+    POST: save data purpose, send data using body, json or form encoded etc. Can cause CORS origin error if not handled.
+6. How can you enable error reporting in PHP?
+    put this on first line, or on bootstrap file
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    or change display_errors = on in ini file
+
+7. What are Traits?
+    procedure to reuse code/function living inside another class
+
+8. How we can get the number of elements in an array?
+    count(array);
+
+9. What are the __construct() and __destruct() methods in a PHP class?
+    __construct first function that will run when instance the class
+    __destruct a function that will run when object is destroying
+
+10. Suppose that you have to implement a class named Dragonball. 
+    This class must have an attribute named ballCount (which starts from 0) and a method iFoundaBall. 
+    When iFoundaBall is called, 
+    ballCount is increased by one. 
+    If the value of ballCount is equal to seven, then the message You can ask your wish is printed, 
+    and ballCount is reset to 0. 
+    How woulcd you implement this class?
+
+    class DragonBall{
+        ballCount = 0;
+
+        function iFoundABall(){
+            currentBallCount = $this->getBallCount();
+            currentBallCount++;
+            $this->setBallCount(currentBallCount);
+
+            if(this.ballCount==7){
+                echo "Askk your wish";
+            }
+
+            $this->setBallCount(0);
+        }
+
+        function getBallCount(){
+            return $this.ballCount;
+        }
+
+        function setBallCount(ballCount){
+            $this.ballCount = ballCount;
+        }
+    }
+
+11. Explain what is MVC in PHP?
+    MVC (Model, View, Controller): one of software architecture design, separate model(database), controller(logic), and view into different file.
