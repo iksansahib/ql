@@ -3,7 +3,7 @@
 namespace App\Service;
 
 class UserService {
-    private $user_json = "../user.json";
+    private $user_json = __DIR__ . "/../user.json";
     public function register($user){
         $json = json_decode(file_get_contents($this->user_json), true);
         if(empty($user['username']) || empty($user['password'])){
@@ -25,6 +25,10 @@ class UserService {
 
     public function login($user){
         $json = json_decode(file_get_contents($this->user_json), true);
+        if(empty($user['username']) || empty($user['password'])){
+            return array('message'=>"Login gagal");
+        }
+
         foreach($json as $k=>$v){
             if($v['username']==$user['username'] && $v['password']==$user['password']){
                 $_SESSION['username'] = $user['username'];
@@ -35,7 +39,7 @@ class UserService {
     }
 
     public function logout(){
-        \session_destroy();
+        @\session_destroy();
         return array('message'=>"Logout Sukses");
     }
 }

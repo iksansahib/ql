@@ -2,8 +2,8 @@
 namespace App\Service;
 
 class TodoService{
-    private $file_json = "../todo.json";
-    private $config_json = "../config.json";
+    private $file_json = __DIR__ . "/../todo.json";
+    private $config_json = __DIR__ . "../config.json";
     public function getTodo($id=""){
         $json = json_decode(file_get_contents($this->file_json), true);
         if($id!=""){

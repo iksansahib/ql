@@ -8,7 +8,7 @@ use App\Service\UserService;
 
 return function (App $app) {
     $container = $app->getContainer();
-    session_start();
+    @session_start();
     $container['todo'] = function($c){
         return new TodoService();
     };

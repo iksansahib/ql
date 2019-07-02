@@ -22,6 +22,7 @@ class BaseTestCase extends TestCase
      * @var bool
      */
     protected $withMiddleware = true;
+    protected $lastId = 0;
 
     /**
      * Process the application given a request method and URI
@@ -37,7 +38,8 @@ class BaseTestCase extends TestCase
         $environment = Environment::mock(
             [
                 'REQUEST_METHOD' => $requestMethod,
-                'REQUEST_URI' => $requestUri
+                'REQUEST_URI' => $requestUri,
+                'CONTENT_TYPE' => 'application/json'
             ]
         );
 
@@ -69,12 +71,14 @@ class BaseTestCase extends TestCase
         }
 
         // Register routes
+        // session_start();
         $routes = require __DIR__ . '/../../src/routes.php';
-        $routes($app);
 
+        $routes($app);
         // Process the application
         $response = $app->process($request, $response);
-
+        $config = json_decode(file_get_contents(__DIR__ . '/../../config.json'));
+        $this->lastId = $config->lastId;
         // Return the response
         return $response;
     }
